@@ -14,5 +14,10 @@ def signup(request):
 
 def login(request):
     users = Signup.objects.all()
-    return render(request, "home/login.html",{"users":users})   
+    return render(request, "home/login.html",{"users":users, "role":"manager"})   
 
+def home(request):
+    return render(request, "home/home.html")
+
+def about(request):
+    return render(request, "home/about.html")

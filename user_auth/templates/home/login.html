@@ -8,10 +8,20 @@
   <body>
     <h1 style="background-color: blue;">Login page</h1>
     {% for i in users %}
-      
-       <h1>{{i.name}}</h1>
-       <p>{{ i.email }}</p>
+      {% if role == "admin" %}
+        <h1 style="background-color: red;">{{i.name}}</h1>
+        <p>{{ i.email }}</p>
+        <button>Edit</button>
+      {% elif role == "manager" %}
+          <h1 >{{i.name}}</h1>
+         <p>{{ i.email }}</p>
+         <button>create</button>
+      {% else %}
+        <h1 >{{i.name}}</h1>
+         <p>{{ i.email }}</p>
+      {% endif %}
     {% endfor %}
+
 
     <h3>loop</h3>
 

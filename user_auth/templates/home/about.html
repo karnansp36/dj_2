@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>This is about html</h1>
+{% include "components/btn.html" with text="submit" c_color="red" %}
+{% include "components/btn.html" with text="add" c_color="green" %}
+
+{% block pricing %}
+
+  price -3000
+{% endblock %}
+{% endblock %}
+
+{% block title %} About page {% endblock %} 
+
+
+
