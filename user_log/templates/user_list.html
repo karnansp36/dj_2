@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>post list</h1>
+    {% for post in posts %}
+        <div>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.id }}</p>
+            {% if post.img %}
+                <img src="{{ post.img.url }}" alt="Post Image" style="max-width: 200px;">
+            {% endif %}
+            <a href="/user/detail/{{ post.id }}">detail</a>
+            <a href="/user/delete/{{ post.id }}">delete</a>
+            <a href="/user/edit/{{ post.id }}">edit</a>
+        </div>
+    {% endfor %}
+</body>
+</html>
