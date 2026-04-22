@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user_auth',
     'user_log',
+    'user_admin',
 ]
 
 MIDDLEWARE = [

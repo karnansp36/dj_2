@@ -22,4 +22,3 @@ def home(request):
 def about(request):
     return render(request, "home/about.html")
 
-#dsfsdfs

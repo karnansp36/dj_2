@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>signup</h1>
+    {% for i in messages %}
+        {% if i.tags == "error" %}
+            <p style="color: red;">{{ i }}</p>
+        {% else %}
+            <p style="color: rgb(102, 255, 0);">{{ i }}</p>
+        {% endif %}
+    {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button>Submit</button>
+    </form>
+</body>
+</html>
