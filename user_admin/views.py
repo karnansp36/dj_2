@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserSignupForm
+from .forms import UserSignupForm, TwitterPostForm
 from .models import User_signup
 from django.contrib import messages
 # Create your views here.
@@ -53,3 +53,34 @@ def home2(request):
     #     messages.error(request, "You must be logged in to view this page.")
     #     return redirect("signin")
     return render(request, "home2.html")
+
+
+def view_post_form(request):
+    return render(request, "create_post.html", {"form": TwitterPostForm()})
+
+def create_post(request):
+    if request.method == "POST":
+        form = TwitterPostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user_id = User_signup.objects.get(id=request.session["user_id"])
+            post.save()
+            messages.success(request, "Post created successfully.")
+            return redirect("home2")
+        else:
+            messages.error(request, "Invalid form submission.")
+
+def update_post(request, id):
+    if "user_id" not in request.session:
+        messages.error(request, "You must be logged in to view this page.")
+        return redirect("signin")
+    if request.method == "POST":
+        form = TwitterPostForm(request.POST, )
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user_id = User_signup.objects.get(id=request.session["user_id"])
+            post.save()
+            messages.success(request, "Post created successfully.")
+            return redirect("home2")
+        else:
+            messages.error(request, "Invalid form submission.")
