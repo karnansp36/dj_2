@@ -13,14 +13,14 @@ def register(request):
             username = form.cleaned_data["name"]
             email = form.cleaned_data["email"]
             password = hash_password(form.cleaned_data["password"])
-            otp = random.randint(1000, 9999)
-            send_mail("Welcome to Twitter Clone", f"Your otp : {otp}", "reviewmaster36@gmail.com", [email], fail_silently=False)
+            # otp = random.randint(1000, 9999)
+            # send_mail("Welcome to Twitter Clone", f"Your otp : {otp}", "reviewmaster36@gmail.com", [email], fail_silently=False)
 
             if User_signup.objects.filter(email=email).exists():
                 messages.error(request, "Email already exists.")
             else:
                 User_signup.objects.create(name=username, email=email, password=password)
-                send_mail("Welcome to Twitter Clone", "Thank you for registering on our platform!", "reviewmaster36@gmail.com", [email], fail_silently=False)
+                # send_mail("Welcome to Twitter Clone", "Thank you for registering on our platform!", "reviewmaster36@gmail.com", [email], fail_silently=False)
                 messages.success(request, "Registration successful.")
                 # return render(request, "a_signup.html", {"form":UserSignupForm()})
         else:
@@ -63,6 +63,7 @@ def home2(request):
 def view_post_form(request):
     return render(request, "create_post.html", {"form": TwitterPostForm()})
 
+@login_required
 def create_post(request):
     if request.method == "POST":
         form = TwitterPostForm(request.POST)
